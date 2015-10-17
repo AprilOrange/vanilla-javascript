@@ -410,3 +410,47 @@ function ready(fn) {
   }
 }
 ```
+
+## utf8str ->jsstr  and  jsstr -> utf8str
+http://ecmanaut.blogspot.jp/2006/07/encoding-decoding-utf8-in-javascript.html
+```javascript
+function utf8StrToStr(str) { 
+  return decodeURIComponent(escape(str)) 
+}
+
+function strToUtf8str(str) {
+   return unescape(encodeURIComponent(str)) 
+}
+``` 
+
+## string -> hex 
+http://stackoverflow.com/questions/21647928/javascript-unicode-string-to-hex
+
+http://stackoverflow.com/questions/14603205/how-to-convert-hex-string-into-a-bytes-array-and-a-bytes-array-in-the-hex-strin
+```javascript        
+function strToHex(str) {
+    var hex = '';
+    for (var i=0; i<str.length; i++) {
+          var str1 = str.charCodeAt(i).toString(16);
+          str1 = str1.length == 0 ? "00" :
+          str1.length == 1 ? "0" + str1 : 
+          str1.length == 2 ? str1 :
+          str1.substring(str1.length-2, str1.length);
+          hex += str1;
+    }
+    return hex;
+}
+```
+
+## hex -> string 
+http://stackoverflow.com/questions/3745666/how-to-convert-from-hex-to-ascii-in-javascript?lq=1
+
+```javascript 
+function hexToStr(hexx) {
+    var hex = hexx.toString();
+    var str = '';
+    for (var i = 0; i < hex.length; i += 2)
+        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    return str;
+}
+```
